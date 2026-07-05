@@ -3,6 +3,7 @@ This script is the api code, the bridge between the frontend and the recommendat
 """
 
 from fastapi import FastAPI, Depends
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 
 from data_loader import DataLoader
@@ -13,6 +14,21 @@ from services import RecommendationService
 from database import get_db
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+
+    allow_origins=[
+        "http://127.0.0.1:5000",
+        "http://localhost:5000"
+    ],
+
+    allow_credentials=True,
+
+    allow_methods=["*"],
+
+    allow_headers=["*"],
+)
 
 loader = DataLoader("../data/cleaned_job_role_dataset.csv")
 

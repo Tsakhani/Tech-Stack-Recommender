@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="min-h-screen flex justify-center items-center">
+
+    <div class="bg-white rounded-xl shadow-lg p-10 w-full max-w-3xl">
+
+        <h1 class="text-4xl font-bold text-center">
+
+            Tech Stack Recommender
+
+        </h1>
+
+        <p class="text-center text-gray-500 mt-3">
+
+            Enter at least three skills separated by commas.
+
+        </p>
+
+        <textarea
+            id="skills"
+            rows="5"
+            placeholder="Python, SQL, Docker"
+            class="w-full mt-6 border rounded-lg p-4">
+        </textarea>
+
+        <button
+            id="recommendButton"
+            class="mt-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg w-full">
+
+            Get Recommendations
+
+        </button>
+
+        <div
+            id="loading"
+            class="hidden text-center mt-6">
+
+            Generating recommendations...
+
+        </div>
+
+        <div
+            id="results"
+            class="mt-8 space-y-4">
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

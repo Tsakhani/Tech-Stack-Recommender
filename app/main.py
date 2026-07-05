@@ -9,12 +9,13 @@ from database import engine, SessionLocal
 from models import Base, User, Recommendation
 
 def main():
+    Base.metadata.create_all(bind=engine)
 
     loader = DataLoader("../data/cleaned_job_role_dataset.csv")
 
     dataframe = loader.load_data()
 
-    engine = RecommendationEngine(dataframe)
+    recommender = RecommendationEngine(dataframe)
 
     db = SessionLocal()
 
@@ -37,7 +38,7 @@ def main():
 
     db.refresh(user)
 
-    recommendations = engine.recommend(skills)
+    recommendations = recommender.recommend(skills)
 
     for _, row in recommendations.iterrows():
         recommendation = Recommendation(
@@ -54,7 +55,7 @@ def main():
 
     print(recommendations)
 
-    Base.metadata.create_all(bind=engine)
+    
 
 if __name__ == "__main__":
     main()
