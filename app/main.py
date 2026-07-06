@@ -1,6 +1,4 @@
-"""
-Only for testing purposes. This script is not intended to be used in production.
-"""
+
 
 from data_loader import DataLoader
 from recommendation_engine import RecommendationEngine
